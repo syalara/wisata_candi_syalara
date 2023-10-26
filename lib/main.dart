@@ -15,14 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Candi',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: DetailScreen(candi:candiList[0]),
+      home: DetailScreen(candi: candiList[0]),
     );
   }
 }
-
-
-

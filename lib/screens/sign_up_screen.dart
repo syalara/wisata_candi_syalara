@@ -16,6 +16,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _errorText = '';
   bool _obscurePassword = true;
 
+  //TODO: 1. Membuat metode sign up
+  void _signUp() async {
+    String name = _fullnameController.text.trim();
+    String username =  _usernameController.text.trim();
+    String password = _passwordController.text.trim();
+
+    if(password.length <8 ||
+    !password.contains(RegExp(r'[A-Z]')) ||
+    !password.contains(RegExp(r'[a-z]')) ||
+    !password.contains(RegExp(r'[0-9]')) ||
+    !password.contains(RegExp(r'[!@#$%^&*()|<>]'))) {
+      setState(() {
+        _errorText = 'Minimal 8 karakter, kombinasi [A-Z], [a-z], [0-9], !@#\\\$%^&*():{}<>';
+      });
+      return;
+    };
+
+    print('*** Sign Up berhasil!');
+    print('fullname : $name');
+    print('username: $username');
+    print('password: $password');
+
+  }
+
+  // TODO: 2. Membuat metode dispose
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _fullnameController.dispose();
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -72,31 +105,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // TODO : 7. Pasang ElevatedButton Sign In
                 SizedBox(height: 20),
                 ElevatedButton(
-                    onPressed: (){
-                      setState(() {
-                        // if(_passwordController.value.text.length < 8){
-                        //   _errorText = "Password harus lebih dari atau sama dengan 8 karakter";
-                        // } else if(!_passwordController.value.text.contains(RegExp(r'[A-z'))){
-                        //   _errorText = 'Password harus berisi uppercase';
-                        // }else if(!_passwordController.value.text.contains(RegExp(r'[a-z]'))){
-                        //   _errorText = 'Password harus berisi lowercase';
-                        // }else if(!_passwordController.value.text.contains(RegExp(r'[0-9]'))){
-                        //   _errorText = 'Password harus berisi angka';
-                        // }else if(!_passwordController.value.text.contains(RegExp(r'[/*.,]'))){
-                        //   _errorText = 'Password harus berisi karakter spesial (/*.,)';
-                        // }else if(
-                        // _passwordController.value.text.contains(_fullnameController.value.text) ||
-                        //     _passwordController.value.text.contains(_usernameController.value.text)
-                        // ){
-                        //   _errorText = 'Password harus berisi nama atau nama pengguna anda';
-                        // } else {
-                        //   _errorText = '';
-                        // }
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Text('Sign In')
-                ),
+                    onPressed: _signUp,
+                    child: Text('Sign Up')),
               ],
             ),
           ),

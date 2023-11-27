@@ -14,13 +14,14 @@ class _ProfilScreenState extends State<ProfilScreen> {
   int favoriteCandiCount = 0;
 
   // TODO: 5. Implementasi fungsi singin
-  void signIn () {
-    Navigator.pushNamed(
-        context, '/sign_in'
-    );
-    setState(() {
-      // isSignedIn = !isSignedIn;
-    });
+     void signIn () {
+  //   Navigator.pushNamed(
+  //       context, '/sign_in'
+  //   );
+  //   setState(() {
+  //     // isSignedIn = !isSignedIn;
+  //   });
+       Navigator.pushNamed(context, '/Sign_in');
   }
   // TODO: 6. Implementasi fungsi singout
   void signOut () {

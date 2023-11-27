@@ -33,7 +33,31 @@ class _SignInScreenState extends State<SignInScreen> {
       return;
     }
 
-    if(savedUsername.isEmpty) 
+    if(savedUsername.isEmpty || savedPassword.isEmpty) {
+      setState(() {
+        _errorText = 'Pengguna belum terdaftar, silahkan daftar terlebih dahulu';
+      });
+      return;
+    }
+    if(enteredUsername == savedUsername && enteredPassword == savedPassword){
+      setState(() {
+        _errorText = '';
+        _isSignedIn = true;
+        prefs.setBool('isSignedIn', true);
+      });
+      WidgetsBinding.instance.addPostFrameCallback((..) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      });
+      WidgetsBinding.instance.addPostFrameCallback((..) {
+        Navigator.pushReplacementNamed(context, '/');
+      });
+      }
+
+    } else {
+      setState(() {
+        _errorText = 'Nama pengguna atau kata sandi salah';
+      });
+    }
   }
   @override
   Widget build(BuildContext context) {
